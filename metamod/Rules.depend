@@ -1,0 +1,92 @@
+debug.linux.amd64/linkgame.o debug.win32/linkgame.o:  linkgame.cpp linkent.h osdep.h types_meta.h mreg.h log_meta.h \
+ enginecallbacks.h sdk_util.h metamod.h meta_api.h dllapi.h engine_api.h \
+ plinfo.h mutil.h mhook.h mlist.h mplugin.h api_info.h support_meta.h \
+ conf_meta.h mplayer.h meta_eiface.h engine_t.h engineinfo.h
+debug.linux.amd64/game_support.o debug.win32/game_support.o:  game_support.cpp game_support.h types_meta.h metamod.h \
+ meta_api.h dllapi.h sdk_util.h enginecallbacks.h osdep.h mreg.h \
+ log_meta.h engine_api.h plinfo.h mutil.h mhook.h mlist.h mplugin.h \
+ api_info.h support_meta.h conf_meta.h mplayer.h meta_eiface.h engine_t.h \
+ engineinfo.h games.h
+debug.linux.amd64/conf_meta.o debug.win32/conf_meta.o:  conf_meta.cpp conf_meta.h types_meta.h support_meta.h \
+ osdep.h mreg.h log_meta.h enginecallbacks.h sdk_util.h
+debug.linux.amd64/engine_api.o debug.win32/engine_api.o:  engine_api.cpp engine_api.h metamod.h meta_api.h dllapi.h \
+ sdk_util.h enginecallbacks.h osdep.h types_meta.h mreg.h log_meta.h \
+ plinfo.h mutil.h mhook.h mlist.h mplugin.h api_info.h support_meta.h \
+ conf_meta.h mplayer.h meta_eiface.h engine_t.h engineinfo.h \
+ thread_logparse.h
+debug.linux.amd64/linkent.o debug.win32/linkent.o:  linkent.cpp linkent.h osdep.h types_meta.h mreg.h log_meta.h \
+ enginecallbacks.h sdk_util.h metamod.h meta_api.h dllapi.h engine_api.h \
+ plinfo.h mutil.h mhook.h mlist.h mplugin.h api_info.h support_meta.h \
+ conf_meta.h mplayer.h meta_eiface.h engine_t.h engineinfo.h
+debug.linux.amd64/log_meta.o debug.win32/log_meta.o:  log_meta.cpp enginecallbacks.h log_meta.h sdk_util.h osdep.h \
+ types_meta.h mreg.h
+debug.linux.amd64/mplugin.o debug.win32/mplugin.o:  mplugin.cpp mplugin.h types_meta.h meta_api.h dllapi.h \
+ sdk_util.h enginecallbacks.h osdep.h mreg.h log_meta.h engine_api.h \
+ plinfo.h mutil.h mhook.h api_info.h support_meta.h metamod.h mlist.h \
+ conf_meta.h mplayer.h meta_eiface.h engine_t.h engineinfo.h h_export.h
+debug.linux.amd64/osdep.o debug.win32/osdep.o:  osdep.cpp osdep.h types_meta.h mreg.h log_meta.h \
+ enginecallbacks.h sdk_util.h support_meta.h
+debug.linux.amd64/support_meta.o debug.win32/support_meta.o:  support_meta.cpp metamod.h meta_api.h dllapi.h sdk_util.h \
+ enginecallbacks.h osdep.h types_meta.h mreg.h log_meta.h engine_api.h \
+ plinfo.h mutil.h mhook.h mlist.h mplugin.h api_info.h support_meta.h \
+ conf_meta.h mplayer.h meta_eiface.h engine_t.h engineinfo.h \
+ support_meta.h osdep.h
+debug.linux.amd64/metamod.o debug.win32/metamod.o:  metamod.cpp enginecallbacks.h metamod.h meta_api.h dllapi.h \
+ sdk_util.h osdep.h types_meta.h mreg.h log_meta.h engine_api.h plinfo.h \
+ mutil.h mhook.h mlist.h mplugin.h api_info.h support_meta.h conf_meta.h \
+ mplayer.h meta_eiface.h engine_t.h engineinfo.h h_export.h reg_support.h \
+ game_support.h commands_meta.h thread_logparse.h info_name.h vers_meta.h \
+ vdate.h
+debug.linux.amd64/sdk_util.o debug.win32/sdk_util.o:  sdk_util.cpp sdk_util.h enginecallbacks.h osdep.h \
+ types_meta.h mreg.h log_meta.h
+debug.linux.amd64/dllapi.o debug.win32/dllapi.o:  dllapi.cpp dllapi.h sdk_util.h enginecallbacks.h osdep.h \
+ types_meta.h mreg.h log_meta.h metamod.h meta_api.h engine_api.h \
+ plinfo.h mutil.h mhook.h mlist.h mplugin.h api_info.h support_meta.h \
+ conf_meta.h mplayer.h meta_eiface.h engine_t.h engineinfo.h \
+ commands_meta.h
+debug.linux.amd64/h_export.o debug.win32/h_export.o:  h_export.cpp h_export.h osdep.h types_meta.h mreg.h \
+ log_meta.h enginecallbacks.h sdk_util.h metamod.h meta_api.h dllapi.h \
+ engine_api.h plinfo.h mutil.h mhook.h mlist.h mplugin.h api_info.h \
+ support_meta.h conf_meta.h mplayer.h meta_eiface.h engine_t.h \
+ engineinfo.h
+debug.linux.amd64/mutil.o debug.win32/mutil.o:  mutil.cpp mutil.h plinfo.h mhook.h sdk_util.h enginecallbacks.h \
+ linkent.h osdep.h types_meta.h mreg.h log_meta.h metamod.h meta_api.h \
+ dllapi.h engine_api.h mlist.h mplugin.h api_info.h support_meta.h \
+ conf_meta.h mplayer.h meta_eiface.h engine_t.h engineinfo.h
+debug.linux.amd64/api_info.o debug.win32/api_info.o:  api_info.cpp api_info.h types_meta.h
+debug.linux.amd64/commands_meta.o debug.win32/commands_meta.o:  commands_meta.cpp commands_meta.h types_meta.h metamod.h \
+ meta_api.h dllapi.h sdk_util.h enginecallbacks.h osdep.h mreg.h \
+ log_meta.h engine_api.h plinfo.h mutil.h mhook.h mlist.h mplugin.h \
+ api_info.h support_meta.h conf_meta.h mplayer.h meta_eiface.h engine_t.h \
+ engineinfo.h info_name.h vers_meta.h vdate.h
+debug.linux.amd64/mlist.o debug.win32/mlist.o:  mlist.cpp mlist.h types_meta.h mplugin.h meta_api.h dllapi.h \
+ sdk_util.h enginecallbacks.h osdep.h mreg.h log_meta.h engine_api.h \
+ plinfo.h mutil.h mhook.h api_info.h support_meta.h commands_meta.h \
+ metamod.h conf_meta.h mplayer.h meta_eiface.h engine_t.h engineinfo.h
+debug.linux.amd64/mplayer.o debug.win32/mplayer.o:  mplayer.cpp mplayer.h types_meta.h sdk_util.h \
+ enginecallbacks.h metamod.h meta_api.h dllapi.h osdep.h mreg.h \
+ log_meta.h engine_api.h plinfo.h mutil.h mhook.h mlist.h mplugin.h \
+ api_info.h support_meta.h conf_meta.h meta_eiface.h engine_t.h \
+ engineinfo.h
+debug.linux.amd64/reg_support.o debug.win32/reg_support.o:  reg_support.cpp sdk_util.h enginecallbacks.h reg_support.h \
+ mreg.h types_meta.h metamod.h meta_api.h dllapi.h osdep.h log_meta.h \
+ engine_api.h plinfo.h mutil.h mhook.h mlist.h mplugin.h api_info.h \
+ support_meta.h conf_meta.h mplayer.h meta_eiface.h engine_t.h \
+ engineinfo.h
+debug.linux.amd64/mreg.o debug.win32/mreg.o:  mreg.cpp mreg.h types_meta.h metamod.h meta_api.h dllapi.h \
+ sdk_util.h enginecallbacks.h osdep.h log_meta.h engine_api.h plinfo.h \
+ mutil.h mhook.h mlist.h mplugin.h api_info.h support_meta.h conf_meta.h \
+ mplayer.h meta_eiface.h engine_t.h engineinfo.h
+debug.linux.amd64/vdate.o debug.win32/vdate.o:  vdate.cpp info_name.h vers_meta.h
+debug.linux.amd64/studioapi.o debug.win32/studioapi.o:  studioapi.cpp studioapi.h metamod.h meta_api.h dllapi.h \
+ sdk_util.h enginecallbacks.h osdep.h types_meta.h mreg.h log_meta.h \
+ engine_api.h plinfo.h mutil.h mhook.h mlist.h mplugin.h api_info.h \
+ support_meta.h conf_meta.h mplayer.h meta_eiface.h engine_t.h \
+ engineinfo.h
+debug.linux.amd64/thread_logparse.o debug.win32/thread_logparse.o:  thread_logparse.cpp
+debug.linux.amd64/mhook.o debug.win32/mhook.o:  mhook.cpp
+debug.linux.amd64/mqueue.o debug.win32/mqueue.o:  mqueue.cpp
+debug.linux.amd64/linkplug.o debug.win32/linkplug.o:  linkplug.cpp linkent.h osdep.h types_meta.h mreg.h log_meta.h \
+ enginecallbacks.h sdk_util.h metamod.h meta_api.h dllapi.h engine_api.h \
+ plinfo.h mutil.h mhook.h mlist.h mplugin.h api_info.h support_meta.h \
+ conf_meta.h mplayer.h meta_eiface.h engine_t.h engineinfo.h

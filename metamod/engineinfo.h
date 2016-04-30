@@ -13,11 +13,8 @@
 
 #ifdef _WIN32
 typedef void* MemAddr;
-#elif defined(linux)
-#  include <link.h>           // ElfW(Addr/Phdr) macros
-typedef void* MemAddr;
 #else
-#  include <mach-o/loader.h> // Mach-O structures
+#  include <link.h>           // ElfW(Addr/Phdr) macros
 typedef void* MemAddr;
 #endif /* _WIN32 */ 
 
@@ -71,7 +68,7 @@ class EngineInfo
         // pBase.
         void set_code_range( unsigned char* pBase, PIMAGE_NT_HEADERS pNThdr );
 
-#elif defined(linux)
+#else
         
         // Set info using the Programheader found via r_debug struct.
         // Returns 0 on success, error code on failure.
@@ -86,22 +83,6 @@ class EngineInfo
         // address, that relative addresses are based on, is passed in
         // pBase.
         void set_code_range( void* pBase, ElfW(Phdr)* pPhdr );
-
-#else
-	
-	// Set info using the mach_header found with reference address
-	// via dladdr(). Return 0 on success, error code on failue.
-	int mhdr_dladdr( void* pMem );
-
-	// Set info using the mach_header found via Mach-O header passed
-	// as pMachoHdr. Return 0 on success, error code on failure.
-	int mhdr_machohdr( void* pMachoHdr );
-
-	// Set code section start and end from segment_command for __TEXT.
-	// The base address, that relative addresses are based on, is
-	// passed in pBase.
-	void set_code_range( void* pBase, section* pCodeSection );
-
         
 #endif /* _WIN32 */ 
 
@@ -152,7 +133,6 @@ class EngineInfo
         bool is_valid_code_pointer(             void (*fp) (void) );
         bool is_valid_code_pointer(             void (*fp) (const edict_t*, const char*) );
         bool is_valid_code_pointer(             void (*fp) (const edict_t*, const char*, int) );
-        bool is_valid_code_pointer(              int (*fp) (const char *, char**) );
 
  
 };
@@ -267,11 +247,6 @@ inline bool EngineInfo::is_valid_code_pointer( void (*_fp) (const edict_t*, cons
 }
 
 inline bool EngineInfo::is_valid_code_pointer( void (*_fp) (const edict_t*, const char*, int) )
-{
-    return is_valid_code_pointer( (void*)_fp );
-}
-
-inline bool EngineInfo::is_valid_code_pointer( int (*_fp) (const char *, char**) )
 {
     return is_valid_code_pointer( (void*)_fp );
 }

@@ -50,7 +50,7 @@
 extern mBOOL dlclose_handle_invalid;
 
 // String describing platform/DLL-type, for matching lines in plugins.ini.
-#ifdef __linux
+#ifdef linux
 	#define PLATFORM		"linux"
 #  ifdef __amd64__
 	#define PLATFORM_SPC	"lin64"
@@ -60,9 +60,6 @@ extern mBOOL dlclose_handle_invalid;
 #elif defined(_WIN32)
 	#define PLATFORM		"mswin"
 	#define PLATFORM_SPC	"win32"
-#elif defined(__APPLE__)
-	#define PLATFORM		"osx"
-	#define PLATFORM_SPC	"osx32"
 #else /* unknown */
 	#error "OS unrecognized"
 #endif /* unknown */
@@ -86,12 +83,8 @@ extern mBOOL dlclose_handle_invalid;
 	#define DLLEXPORT	__declspec(dllexport)
 	// WINAPI should be provided in the windows compiler headers.
 	// It's usually defined to something like "__stdcall".
-#elif defined(__GNUC__)
-#  if __GNUC__ >= 4
-	#define DLLEXPORT 	__attribute__ ((visibility("default")))
-#  else
+#elif defined(linux)
 	#define DLLEXPORT	/* */
-#  endif
 	#define WINAPI		/* */
 #endif /* linux */
 
@@ -125,7 +118,7 @@ extern mBOOL dlclose_handle_invalid;
 
 
 // Functions & types for DLL open/close/etc operations.
-#if defined(__linux) || defined(__APPLE__)
+#ifdef linux
 	#include <dlfcn.h>
 	typedef void* DLHANDLE;
 	typedef void* DLFUNC;
@@ -143,7 +136,7 @@ extern mBOOL dlclose_handle_invalid;
 		dlclose_handle_invalid = mFALSE;
 		return(dlclose(handle));
 	}
-	inline const char* DLERROR(void) {
+	inline char* DLERROR(void) {
 		if (dlclose_handle_invalid)
 			return("Invalid handle.");
 		return(dlerror());
@@ -169,8 +162,8 @@ extern mBOOL dlclose_handle_invalid;
 	}
 	// Windows doesn't provide a function corresponding to dlerror(), so
 	// we make our own.
-	const char *str_GetLastError(void);
-	inline const char* DLERROR(void) {
+	char *str_GetLastError(void);
+	inline char* DLERROR(void) {
 		if (dlclose_handle_invalid)
 			return("Invalid handle.");
 		return(str_GetLastError());
@@ -198,7 +191,7 @@ mBOOL os_safe_call(REG_CMD_FN pfn);
 // Note that both OS's include room for null-termination:
 //   linux:    "# chars in a path name including nul"
 //   win32:    "note that the sizes include space for 0-terminator"
-#if defined(__linux) || defined(__APPLE__)
+#ifdef linux
 	#include <limits.h>
 #elif defined(_WIN32)
 	#include <stdlib.h>
@@ -208,7 +201,7 @@ mBOOL os_safe_call(REG_CMD_FN pfn);
 
 
 // Various other windows routine differences.
-#if defined(__linux) || defined(__APPLE__)
+#ifdef linux
 	#include <unistd.h>	// sleep
 	#ifndef O_BINARY
     	#define O_BINARY 0
@@ -293,7 +286,7 @@ void mm_set_new_handler( void );
 
 
 // Thread handling...
-#if defined(__linux) || defined(__APPLE__)
+#ifdef linux
 	#include <pthread.h>
 	typedef	pthread_t 	THREAD_T;
 	// returns 0==success, non-zero==failure
@@ -327,7 +320,7 @@ void mm_set_new_handler( void );
 
 
 // Mutex handling...
-#if defined(__linux) || defined(__APPLE__)
+#ifdef linux
 	typedef pthread_mutex_t		MUTEX_T;
 	inline int MUTEX_INIT(MUTEX_T *mutex) {
 		int ret;
@@ -372,7 +365,7 @@ void mm_set_new_handler( void );
 
 
 // Condition variables...
-#if defined(__linux) || defined(__APPLE__)
+#ifdef linux
 	typedef pthread_cond_t	COND_T;
 	inline int COND_INIT(COND_T *cond) {
 		int ret;
@@ -458,7 +451,7 @@ void mm_set_new_handler( void );
 //      non-case-sensitive.
 //  - For linux, this requires no work, as paths uses slashes (/) natively,
 //    and pathnames are case-sensitive.
-#if defined(__linux) || defined(__APPLE__)
+#ifdef linux
 #define normalize_pathname(a)
 #elif defined(_WIN32)
 inline void normalize_pathname(char *path) {
@@ -518,7 +511,7 @@ inline char *realpath(const char *file_name, char *resolved_name) {
 // Generic "error string" from a recent OS call.  For linux, this is based
 // on errno.  For win32, it's based on GetLastError.
 inline const char *str_os_error(void) {
-#if defined(__linux) || defined(__APPLE__)
+#ifdef linux
 	return(strerror(errno));
 #elif defined(_WIN32)
 	return(str_GetLastError());

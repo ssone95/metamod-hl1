@@ -188,13 +188,13 @@ struct meta_enginefuncs_t : public enginefuncs_t {
 
         // Spawn of the devil
         meta_enginefuncs_t(
-            int              (*_pfnPrecacheModel)                   (const char*),
-            int              (*_pfnPrecacheSound)                   (const char*),
+            int              (*_pfnPrecacheModel)                   (char*),
+            int              (*_pfnPrecacheSound)                   (char*),
             void             (*_pfnSetModel)                        (edict_t*, const char*),
             int              (*_pfnModelIndex)                      (const char*),
             int              (*_pfnModelFrames)                     (int),
             void             (*_pfnSetSize)                         (edict_t*, const float*, const float*),
-            void             (*_pfnChangeLevel)                     (const char*, const char*),
+            void             (*_pfnChangeLevel)                     (char*, char*),
             void             (*_pfnGetSpawnParms)                   (edict_t*),
             void             (*_pfnSaveSpawnParms)                  (edict_t*),
             float            (*_pfnVecToYaw)                        (const float*),
@@ -227,11 +227,11 @@ struct meta_enginefuncs_t : public enginefuncs_t {
             const char*      (*_pfnTraceTexture)                    (edict_t*, const float*, const float*),
             void             (*_pfnTraceSphere)                     (const float*, const float*, int, float, edict_t*, TraceResult*),
             void             (*_pfnGetAimVector)                    (edict_t*, float, float*),
-            void             (*_pfnServerCommand)                   (const char*),
+            void             (*_pfnServerCommand)                   (char*),
             void             (*_pfnServerExecute)                   (void),
-            void             (*_pfnClientCommand)                   (edict_t*, const char*, ...),
+            void             (*_pfnClientCommand)                   (edict_t*, char*, ...),
             void             (*_pfnParticleEffect)                  (const float*, const float*, float, float),
-            void             (*_pfnLightStyle)                      (int, const char*),
+            void             (*_pfnLightStyle)                      (int, char*),
             int	             (*_pfnDecalIndex)                      (const char*),
             int              (*_pfnPointContents)                   (const float*),
             void             (*_pfnMessageBegin)                    (int, int, const float*, edict_t*),
@@ -249,8 +249,8 @@ struct meta_enginefuncs_t : public enginefuncs_t {
             const char*      (*_pfnCVarGetString)                   (const char*),
             void             (*_pfnCVarSetFloat)                    (const char*, float),
             void             (*_pfnCVarSetString)                   (const char*, const char*),
-            void             (*_pfnAlertMessage)                    (ALERT_TYPE, const char*, ...),
-            void             (*_pfnEngineFprintf)                   (void*, const char*, ...),
+            void             (*_pfnAlertMessage)                    (ALERT_TYPE, char*, ...),
+            void             (*_pfnEngineFprintf)                   (void*, char*, ...),
             void*            (*_pfnPvAllocEntPrivateData)           (edict_t*, int32),
             void*            (*_pfnPvEntPrivateData)                (edict_t*),
             void             (*_pfnFreeEntPrivateData)              (edict_t*),
@@ -283,7 +283,7 @@ struct meta_enginefuncs_t : public enginefuncs_t {
             void             (*_pfnSetView)                         (const edict_t*, const edict_t*),
             float            (*_pfnTime)                            (void),
             void             (*_pfnCrosshairAngle)                  (const edict_t*, float, float),
-            byte*            (*_pfnLoadFileForMe)                   (const char*, int*),
+            byte*            (*_pfnLoadFileForMe)                   (char*, int*),
             void             (*_pfnFreeFile)                        (void*),
             void             (*_pfnEndSection)                      (const char*),
             int              (*_pfnCompareFileTime)                 (char*, char*, int*),
@@ -295,12 +295,12 @@ struct meta_enginefuncs_t : public enginefuncs_t {
             void             (*_pfnRunPlayerMove)                   (edict_t*, const float*, float, float, float, unsigned short, byte, byte),
             int              (*_pfnNumberOfEntities)                (void),
             char*            (*_pfnGetInfoKeyBuffer)                (edict_t*),
-            char*            (*_pfnInfoKeyValue)                    (char*, const char*),
-            void             (*_pfnSetKeyValue)                     (char*, const char*, const char*),
-            void             (*_pfnSetClientKeyValue)               (int, char*, const char*, const char*),
-            int              (*_pfnIsMapValid)                      (const char*),
+            char*            (*_pfnInfoKeyValue)                    (char*, char*),
+            void             (*_pfnSetKeyValue)                     (char*, char*, char*),
+            void             (*_pfnSetClientKeyValue)               (int, char*, char*, char*),
+            int              (*_pfnIsMapValid)                      (char*),
             void             (*_pfnStaticDecal)                     (const float*, int, int, int),
-            int              (*_pfnPrecacheGeneric)                 (const char*),
+            int              (*_pfnPrecacheGeneric)                 (char*),
             int	             (*_pfnGetPlayerUserId)                 (edict_t*),
             void             (*_pfnBuildSoundMsg)                   (edict_t*, int, const char*, float, float, int, int, int, int, const float*, edict_t*),
             int              (*_pfnIsDedicatedServer)               (void),
@@ -317,7 +317,7 @@ struct meta_enginefuncs_t : public enginefuncs_t {
             int              (*_pfnCheckVisibility)                 (const edict_t*, unsigned char*),
             void             (*_pfnDeltaSetField)                   (struct delta_s*, const char*),
             void             (*_pfnDeltaUnsetField)                 (struct delta_s*, const char*),
-            void             (*_pfnDeltaAddEncoder)                 (const char*, void (*)(struct delta_s*, const unsigned char*, const unsigned char*)),
+            void             (*_pfnDeltaAddEncoder)                 (char*, void (*)(struct delta_s*, const unsigned char*, const unsigned char*)),
             int              (*_pfnGetCurrentPlayer)                (void),
             int              (*_pfnCanSkipPlayer)                   (const edict_t*),
             int              (*_pfnDeltaFindField)                  (struct delta_s*, const char*),
@@ -325,16 +325,16 @@ struct meta_enginefuncs_t : public enginefuncs_t {
             void             (*_pfnDeltaUnsetFieldByIndex)          (struct delta_s*, int),
             void             (*_pfnSetGroupMask)                    (int, int),
             int              (*_pfnCreateInstancedBaseline)         (int, struct entity_state_s*),
-            void             (*_pfnCvar_DirectSet)                  (struct cvar_s*, const char*),
+            void             (*_pfnCvar_DirectSet)                  (struct cvar_s*, char*),
             void             (*_pfnForceUnmodified)                 (FORCE_TYPE, float*, float*, const char*),
             void             (*_pfnGetPlayerStats)                  (const edict_t*, int*, int*),
-            void             (*_pfnAddServerCommand)                (const char*, void (*) (void)),
+            void             (*_pfnAddServerCommand)                (char*, void (*) (void)),
             qboolean         (*_pfnVoice_GetClientListening)        (int, int),
             qboolean         (*_pfnVoice_SetClientListening)        (int, int, qboolean),
             const char*      (*_pfnGetPlayerAuthId)                 (edict_t*),
             sequenceEntry_s* (*_pfnSequenceGet)                     (const char*, const char*),
             sentenceEntry_s* (*_pfnSequencePickSentence)            (const char*, int, int*),
-            int              (*_pfnGetFileSize)                     (const char*),
+            int              (*_pfnGetFileSize)                     (char*),
             unsigned int     (*_pfnGetApproxWavePlayLen)            (const char*),
             int              (*_pfnIsCareerMatch)                   (void),
             int              (*_pfnGetLocalizedStringLength)        (const char*),
@@ -344,8 +344,7 @@ struct meta_enginefuncs_t : public enginefuncs_t {
             void             (*_pfnConstructTutorMessageDecayBuffer)(int*, int),
             void             (*_pfnResetTutorMessageDecayData)      (void),
             void             (*_pfnQueryClientCvarValue)            (const edict_t*, const char*),
-            void             (*_pfnQueryClientCvarValue2)           (const edict_t*, const char*, int),
-            int              (*_pfnCheckParm)                       (const char *, char**)
+            void             (*_pfnQueryClientCvarValue2)           (const edict_t*, const char*, int)
         );
 
         meta_enginefuncs_t( const meta_enginefuncs_t& );
@@ -381,7 +380,6 @@ struct meta_enginefuncs_t : public enginefuncs_t {
 		//      including pfnQueryClientCvarValue()
 		// 156: includes pfnQueryClientCvarValue()
 		// 157: includes pfnQueryClientCvarValue2()
-		// 158: includes pfnCheckParm()
 		static int sm_version;	
 
 };

@@ -47,7 +47,7 @@
 //! To add support for another mod add an entry here, and add all the 
 //! exported entities to link_func.cpp
 game_modlist_t known_games = {
-	// name/gamedir	 linux_so			win_dll			osx_dylib		desc
+	// name/gamedir	 linux_so			win_dll			desc
 	//
 	// Previously enumerated in this sourcefile, the list is now kept in a
 	// separate file, generated based on game information stored in a 
@@ -55,7 +55,7 @@ game_modlist_t known_games = {
 	//
 #include "games.h"
 	// End of list terminator:
-	{NULL, NULL, NULL, NULL, NULL}
+	{NULL, NULL, NULL, NULL}
 };
 
 // Find a modinfo corresponding to the given game name.
@@ -137,11 +137,9 @@ mBOOL setup_gamedll(gamedll_t *gamedll) {
 	// First, look for a known game, based on gamedir.
 	if((known=lookup_game(gamedll->name))) {
 #ifdef _WIN32
-		knownfn=strdup(known->win_dll);
+		knownfn=known->win_dll;
 #elif defined(linux)
-		knownfn=strdup(known->linux_so);
-#elif defined(__APPLE__)
-		knownfn=strdup(known->osx_dylib);
+		knownfn=known->linux_so;
 #else
 #error "OS unrecognized"
 #endif /* _WIN32 */

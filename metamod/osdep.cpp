@@ -34,7 +34,7 @@
  *
  */
 
-#if defined(linux) || defined(__APPLE__)
+#ifdef linux
 // enable extra routines in system header files, like dladdr
 #  ifndef _GNU_SOURCE
 #    define _GNU_SOURCE
@@ -108,7 +108,7 @@ char *my_strtok_r(char *s, const char *delim, char **ptrptr) {
 //    http://msdn.microsoft.com/library/en-us/debug/errors_0sdh.asp
 // except without FORMAT_MESSAGE_ALLOCATE_BUFFER, since we use a local
 // static buffer.
-const char *str_GetLastError(void) {
+char *str_GetLastError(void) {
 	static char buf[MAX_STRBUF_LEN];
 	FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, 
 			NULL, GetLastError(), 
@@ -121,7 +121,7 @@ const char *str_GetLastError(void) {
 
 // Find the filename of the DLL/shared-lib where the given memory location
 // exists.
-#if defined(linux) || defined(__APPLE__)
+#ifdef linux
 // Errno values:
 //  - ME_NOTFOUND	couldn't find a sharedlib that contains memory location
 const char *DLFNAME(void *memptr) {
@@ -184,7 +184,7 @@ const char *DLFNAME(void *memptr) {
 // Determine whether the given memory location is valid (ie whether we
 // should expect to be able to reference strings or functions at this
 // location without segfaulting).
-#if defined(linux) || defined(__APPLE__)
+#ifdef linux
 // Simulate this with dladdr.  I'm not convinced this will be as generally
 // applicable as the native windows routine below, but it should do what
 // we need it for in this particular situation.

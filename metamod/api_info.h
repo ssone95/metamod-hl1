@@ -47,7 +47,7 @@
 typedef struct api_info_s {
 	mBOOL trace;		// if true, log info about this function
 	int loglevel;		// level at which to log info about this function
-	const char *name;	// string representation of function name
+	char *name;			// string representation of function name
 } api_info_t;
 
 
@@ -284,8 +284,6 @@ typedef struct engine_info_s {
 	api_info_t pfnQueryClientCvarValue;
 	// Added 2005/11/22 (no SDK update)
 	api_info_t pfnQueryClientCvarValue2;
-	// Added 2009/06/17 (no SDK update)
-	api_info_t pfnCheckParm;
 	// end
 	api_info_t END;
 } engine_info_t;

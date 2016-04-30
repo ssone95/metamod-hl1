@@ -89,11 +89,11 @@
 	CALL_PLUGIN_API(P_POST, ret_init, pfnName, (pfn_arg, "%s", buf), MRES_OVERRIDE, engine_post_table);
 
 
-int mm_PrecacheModel(const char *s) {
+int mm_PrecacheModel(char *s) {
 	META_ENGINE_HANDLE(int, 0, FN_PRECACHEMODEL, pfnPrecacheModel, (s));
 	RETURN_API()
 }
-int mm_PrecacheSound(const char *s) {
+int mm_PrecacheSound(char *s) {
 	META_ENGINE_HANDLE(int, 0, FN_PRECACHESOUND, pfnPrecacheSound, (s));
 	RETURN_API()
 }
@@ -114,7 +114,7 @@ void mm_SetSize(edict_t *e, const float *rgflMin, const float *rgflMax) {
 	META_ENGINE_HANDLE_void(FN_SETSIZE, pfnSetSize, (e, rgflMin, rgflMax));
 	RETURN_API_void()
 }
-void mm_ChangeLevel(const char *s1, const char *s2) {
+void mm_ChangeLevel(char *s1, char *s2) {
 	META_ENGINE_HANDLE_void(FN_CHANGELEVEL, pfnChangeLevel, (s1, s2));
 	RETURN_API_void()
 }
@@ -255,7 +255,7 @@ void mm_GetAimVector(edict_t *ent, float speed, float *rgflReturn) {
 	RETURN_API_void()
 }
 
-void mm_ServerCommand(const char *str) {
+void mm_ServerCommand(char *str) {
 	META_ENGINE_HANDLE_void(FN_SERVERCOMMAND, pfnServerCommand, (str));
 	RETURN_API_void()
 }
@@ -263,7 +263,7 @@ void mm_ServerExecute(void) {
 	META_ENGINE_HANDLE_void(FN_SERVEREXECUTE, pfnServerExecute, ());
 	RETURN_API_void()
 }
-void mm_engClientCommand(edict_t *pEdict, const char *szFmt, ...) {
+void mm_engClientCommand(edict_t *pEdict, char *szFmt, ...) {
 	META_ENGINE_HANDLE_void_varargs(FN_CLIENTCOMMAND_ENG, pfnClientCommand, pEdict, szFmt);
 	RETURN_API_void()
 }
@@ -272,7 +272,7 @@ void mm_ParticleEffect(const float *org, const float *dir, float color, float co
 	META_ENGINE_HANDLE_void(FN_PARTICLEEFFECT, pfnParticleEffect, (org, dir, color, count));
 	RETURN_API_void()
 }
-void mm_LightStyle(int style, const char *val) {
+void mm_LightStyle(int style, char *val) {
 	META_ENGINE_HANDLE_void(FN_LIGHTSTYLE, pfnLightStyle, (style, val));
 	RETURN_API_void()
 }
@@ -348,7 +348,7 @@ void mm_CVarSetString(const char *szVarName, const char *szValue) {
 	RETURN_API_void()
 }
 
-void mm_AlertMessage(ALERT_TYPE atype, const char *szFmt, ...) {
+void mm_AlertMessage(ALERT_TYPE atype, char *szFmt, ...) {
 #ifndef UNFINISHED
 	META_ENGINE_HANDLE_void_varargs(FN_ALERTMESSAGE, pfnAlertMessage, atype, szFmt);
 #else /* UNFINISHED */
@@ -383,9 +383,9 @@ void mm_AlertMessage(ALERT_TYPE atype, const char *szFmt, ...) {
 	RETURN_API_void()
 }
 #ifdef HLSDK_3_2_OLD_EIFACE
-void mm_EngineFprintf(FILE *pfile, const char *szFmt, ...) {
+void mm_EngineFprintf(FILE *pfile, char *szFmt, ...) {
 #else
-void mm_EngineFprintf(void *pfile, const char *szFmt, ...) {
+void mm_EngineFprintf(void *pfile, char *szFmt, ...) {
 #endif
 	META_ENGINE_HANDLE_void_varargs(FN_ENGINEFPRINTF, pfnEngineFprintf, pfile, szFmt);
 	RETURN_API_void()
@@ -577,7 +577,7 @@ void mm_CrosshairAngle(const edict_t *pClient, float pitch, float yaw) {
 	RETURN_API_void()
 }
 
-byte * mm_LoadFileForMe(const char *filename, int *pLength) {
+byte * mm_LoadFileForMe(char *filename, int *pLength) {
 	META_ENGINE_HANDLE(byte *, NULL, FN_LOADFILEFORME, pfnLoadFileForMe, (filename, pLength));
 	RETURN_API()
 }
@@ -630,20 +630,20 @@ char *mm_GetInfoKeyBuffer(edict_t *e) {
 	META_ENGINE_HANDLE(char *, NULL, FN_GETINFOKEYBUFFER, pfnGetInfoKeyBuffer, (e));
 	RETURN_API()
 }
-char *mm_InfoKeyValue(char *infobuffer, const char *key) {
+char *mm_InfoKeyValue(char *infobuffer, char *key) {
 	META_ENGINE_HANDLE(char *, NULL, FN_INFOKEYVALUE, pfnInfoKeyValue, (infobuffer, key));
 	RETURN_API()
 }
-void mm_SetKeyValue(char *infobuffer, const char *key, const char *value) {
+void mm_SetKeyValue(char *infobuffer, char *key, char *value) {
 	META_ENGINE_HANDLE_void(FN_SETKEYVALUE, pfnSetKeyValue, (infobuffer, key, value));
 	RETURN_API_void()
 }
-void mm_SetClientKeyValue(int clientIndex, char *infobuffer, const char *key, const char *value) {
+void mm_SetClientKeyValue(int clientIndex, char *infobuffer, char *key, char *value) {
 	META_ENGINE_HANDLE_void(FN_SETCLIENTKEYVALUE, pfnSetClientKeyValue, (clientIndex, infobuffer, key, value));
 	RETURN_API_void()
 }
 
-int mm_IsMapValid(const char *filename) {
+int mm_IsMapValid(char *filename) {
 	META_ENGINE_HANDLE(int, 0, FN_ISMAPVALID, pfnIsMapValid, (filename));
 	RETURN_API()
 }
@@ -651,7 +651,7 @@ void mm_StaticDecal( const float *origin, int decalIndex, int entityIndex, int m
 	META_ENGINE_HANDLE_void(FN_STATICDECAL, pfnStaticDecal, (origin, decalIndex, entityIndex, modelIndex));
 	RETURN_API_void()
 }
-int mm_PrecacheGeneric(const char *s) {
+int mm_PrecacheGeneric(char *s) {
 	META_ENGINE_HANDLE(int, 0, FN_PRECACHEGENERIC, pfnPrecacheGeneric, (s));
 	RETURN_API()
 }
@@ -729,7 +729,7 @@ void mm_DeltaUnsetField( struct delta_s *pFields, const char *fieldname ) {
 	META_ENGINE_HANDLE_void(FN_DELTAUNSETFIELD, pfnDeltaUnsetField, (pFields, fieldname));
 	RETURN_API_void()
 }
-void mm_DeltaAddEncoder( const char *name, void (*conditionalencode)( struct delta_s *pFields, const unsigned char *from, const unsigned char *to ) ) {
+void mm_DeltaAddEncoder( char *name, void (*conditionalencode)( struct delta_s *pFields, const unsigned char *from, const unsigned char *to ) ) {
 	META_ENGINE_HANDLE_void(FN_DELTAADDENCODER, pfnDeltaAddEncoder, (name, conditionalencode));
 	RETURN_API_void()
 }
@@ -763,7 +763,7 @@ int mm_engCreateInstancedBaseline( int classname, struct entity_state_s *baselin
 	META_ENGINE_HANDLE(int, 0, FN_CREATEINSTANCEDBASELINE, pfnCreateInstancedBaseline, (classname, baseline));
 	RETURN_API()
 }
-void mm_Cvar_DirectSet( struct cvar_s *var, const char *value ) {
+void mm_Cvar_DirectSet( struct cvar_s *var, char *value ) {
 	META_ENGINE_HANDLE_void(FN_CVAR_DIRECTSET, pfnCvar_DirectSet, (var, value));
 	RETURN_API_void()
 }
@@ -781,7 +781,7 @@ void mm_GetPlayerStats( const edict_t *pClient, int *ping, int *packet_loss ) {
 	RETURN_API_void()
 }
 
-void mm_AddServerCommand( const char *cmd_name, void (*function) (void) ) {
+void mm_AddServerCommand( char *cmd_name, void (*function) (void) ) {
 	META_ENGINE_HANDLE_void(FN_ADDSERVERCOMMAND, pfnAddServerCommand, (cmd_name, function));
 	RETURN_API_void()
 }
@@ -818,7 +818,7 @@ sentenceEntry_s *mm_SequencePickSentence(const char *groupName, int pickMethod, 
 	RETURN_API()
 }
 
-int mm_GetFileSize(const char *filename) {
+int mm_GetFileSize(char *filename) {
 	META_ENGINE_HANDLE(int, 0, FN_GETFILESIZE, pfnGetFileSize, (filename));
 	RETURN_API()
 }
@@ -877,13 +877,6 @@ void mm_QueryClientCvarValue2(const edict_t *pEdict, const char *cvarName, int r
 {
 	META_ENGINE_HANDLE_void(FN_QUERYCLIENTCVARVALUE2, pfnQueryClientCvarValue2, (pEdict, cvarName, requestId));
 	RETURN_API_void();
-}
-
-//Added 2009-06-17 (no SDK update)
-int mm_CheckParm(const char *pchCmdLineToken, char **ppnext)
-{
-	META_ENGINE_HANDLE(int, 0, FN_CHECKPARM, pfnCheckParm, (pchCmdLineToken, ppnext));
-	RETURN_API();
 }
 
 meta_enginefuncs_t meta_engfuncs(
@@ -1094,10 +1087,7 @@ meta_enginefuncs_t meta_engfuncs(
 	&mm_QueryClientCvarValue,		// pfnQueryClientCvarValue()
 
 	//Added 2005-11-22 (no SDK update)
-	&mm_QueryClientCvarValue2,		// pfnQueryClientCvarValue2()
-
-	// Added 2009-06-17 (no SDK update)
-	&mm_CheckParm					// pfnCheckParm()
+	&mm_QueryClientCvarValue2		// pfnQueryClientCvarValue2()
 );
 
 

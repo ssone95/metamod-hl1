@@ -244,8 +244,6 @@ enginefuncs_t meta_engfuncs =
 	NULL,						// pfnQueryClientCvarValue()
 	// Added Added 2005-11-22 (no SDK update)
 	NULL,						// pfnQueryClientCvarValue2()
-	// Added 2009-06-17 (no SDK update)
-	NULL,						// pfnCheckParm()
 };
 
 C_DLLEXPORT int GetEngineFunctions(enginefuncs_t *pengfuncsFromEngine, 
